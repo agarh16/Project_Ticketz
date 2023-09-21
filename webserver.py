@@ -24,6 +24,10 @@ def get_users():
         return all_users
     
 
+@app.route("/login", methods="['GET', 'POST']")
+def login():
+    if request.method == 'POST':
+        user_email = request.form.get('user_email')
         
         
 

@@ -22,7 +22,7 @@ def create_db(name="main.db"):
 def add_users(db):
     cur = db.cursor()
     
-    cur.execute("INSERT INTO user (user_name, user_last_name, is_employee) VALUES (?, ?, ?)")
+    cur.execute("INSERT INTO user (user_name, user_last_name, user_email, is_employee) VALUES (?, ?, ?, ?)")
     
     db.commit()     
 

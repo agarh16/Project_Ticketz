@@ -19,5 +19,13 @@ CORS(app)
 def get_users():
     if request.method == "GET":
         cur = get_connection()
-        cur.execute("SELECT * FROM user").fetchall()
+        users = cur.execute("SELECT * FROM user").fetchall()
+        all_users = [{u: item[u] for u in item.keys()} for item in users]
+        return all_users
+    
+
         
+        
+
+app.run(host="localhost", port=8000, debug=True)
+

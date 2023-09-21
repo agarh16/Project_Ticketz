@@ -12,7 +12,9 @@ def create_db(name="main.db"):
         db.executescript(schema.read())
 
         test_add_users(db)
-     
+        add_tickets(db)
+        add_comment(db)
+
         return db
 
     
@@ -24,7 +26,10 @@ def add_users(db):
     
     db.commit()     
 
+
 def add_tickets(db):
     pass
-def add_note(db):
+
+
+def add_comment(db):
     pass   

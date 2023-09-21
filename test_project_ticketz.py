@@ -17,5 +17,5 @@ def test_add_tickets(db):
     pass
 
 
-def test_add_note(db):
+def test_add_comment(db):
     pass   

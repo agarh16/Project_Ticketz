@@ -26,8 +26,10 @@ def get_users():
 
 @app.route("/login", methods="['GET', 'POST']")
 def login():
-    if request.method == 'POST':
-        user_email = request.form.get('user_email')
+    # if request.method == 'POST':
+    #     cur=get_connection()
+    #     user = cur.execute("SELECT user_email FROM user WHERE user_email= ...//").fetchone()
+        pass
         
         
 

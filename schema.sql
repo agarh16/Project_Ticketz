@@ -7,6 +7,8 @@ CREATE TABLE user (
     user_since TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     user_name VARCHAR(50),
     user_last_name VARCHAR(50),
+    user_email VARCHAR NOT NULL UNIQUE,
+    user_password VARCHAR NOT NULL,
     is_employee BOOLEAN NOT NULL
 );
 

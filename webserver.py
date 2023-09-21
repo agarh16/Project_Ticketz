@@ -24,14 +24,18 @@ def get_users():
         return all_users
     
 
-@app.route("/login", methods="['GET', 'POST']")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    # if request.method == 'POST':
-    #     cur=get_connection()
-    #     user = cur.execute("SELECT user_email FROM user WHERE user_email= ...//").fetchone()
-        pass
-        
-        
+    if request.method == "POST":
+        cur=get_connection()
+        user_email = request.form.get('user_email')
+        user = cur.execute("SELECT user_email FROM user WHERE user_email=?", (user_email,))
+        if user:
+            return "Logged in!"
+    else:
+        return "Not a valid user!"
 
+        
+        
 app.run(host="localhost", port=8000, debug=True)
 

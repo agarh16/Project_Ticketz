@@ -1,0 +1,8 @@
+# Python package. Will run automatically
+from flask import Flask
+
+def create_app():
+    app = Flask(__name__)
+    app.config['SECRET KEY'] = 'asdggbdb sdfsfd serf'
+
+    return app

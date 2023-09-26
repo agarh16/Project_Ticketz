@@ -1,11 +1,33 @@
 {% extends "base.html" %} {% block title %}Sign Up{% endblock %} 
-
 {% block content %}
+<span class="navbar-text">Sign Up</span>{% endblock %}
+
+{% block body %}
 <form method="POST">
-    <h3 align="center">Sign Up</h3>
-    <div class="form group">
-        
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input 
+            type="firstName" 
+            class="form-control" 
+            id="firstName" name="firstName" 
+            placeholder="First Name"
+        />
+        <label for="lastName">Last Name</label>
+        <input 
+            type="lastName" 
+            class="form-control" 
+            id="lastName" name="lastName" 
+            placeholder="Last Name"
+        />
+        <label for="email">E-mail Address</label>
+        <input 
+            type="email" 
+            class="form-control" 
+            id="email" name="email" 
+            placeholder="Enter e-mail"
+        />
+        <input class="form-check-input" type="checkbox" value="TRUE" id="isEmployee">
+        <label class="form-check-label" for="isEmployee">Are you an emloyee?</label>
     </div>
 </form>
-
 {% endblock %}

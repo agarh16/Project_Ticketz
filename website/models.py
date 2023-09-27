@@ -4,16 +4,32 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
-    user_id = db.Column(db.Integer, primary_key=True)
-    user_since = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_name = db.Column(db.String(150))
-    user_last_name = db.Column(db.String(150))
-    user_email = db.Column(db.String(150), unique=True)
-    user_password = db.Column(db.String(150))
-    is_employee = db.Column(db.Boolean)
+    userId = db.Column(db.Integer, primary_key=True)
+    userSince = db.Column(db.DateTime(timezone=True), default=func.now())
+    firstName = db.Column(db.String(150))
+    lastName = db.Column(db.String(150))
+    email = db.Column(db.String(150), unique=True)
+    password = db.Column(db.String(150))
+    isEmployee = db.Column(db.Boolean)
+    tickets = db.relationship('Ticket')
 
-class Ticket(db.Model, UserMixin):
-    ticket_id
-    ticket_date
-    ticket_name
-    user_id
+class Ticket(db.Model):
+    ticketId = db.Column(db.Integer, primary_key=True)
+    ticketDate = db.Column(db.DateTime(timezone=True), default=func.now())
+    ticketName = db.Column(db.String(150))
+    userId = db.Column(db.Integer, db.ForeignKey('user.userId'))
+    comments = db.relationship('Comment')
+    allStatus = db.relationship('Status')
+
+class Comment(db.Model):
+    commentId = db.Column(db.Integer, primary_key=True)
+    commentDate = db.Column(db.DateTime(timezone=True), default=func.now())
+    content = db.Column(db.Text)
+    ticketId = db.Column(db.Integer, db.ForeignKey('ticket.ticketId'))
+
+class Status(db.Model):
+    statusId = db.Column(db.Integer, primary_key=True)
+    ticketStatus = db.Column(db.String(50))
+    isAssigned = db.Column(db.Boolean)
+    statusDate = db.Column(db.DateTime(timezone=True), default=func.now)
+    ticketId = db.Column(db.Integer, db.ForeignKey('ticket.ticketId'))

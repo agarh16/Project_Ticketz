@@ -1,4 +1,7 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from .models import User
+from . import db
+from werkzeug.security import generate_password_hash, check_password_hash
 
 auth = Blueprint('auth', __name__)
 
@@ -36,9 +39,24 @@ def sing_up():
         elif len(password1) < 7:
             #Flash a message
             flash('Password must have at least 7 characters.', category='error')
-        else: 
-            flash('Account created!', category='success')    
-                
+        elif isEmployee == '1': 
+            new_user = User(firstName=firstName, lastName=lastName, email=email, 
+                password=generate_password_hash(password1, method='sha256'), isEmployee=True)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Account created!', category='success')
+            value = request.form.get('isEmployee') 
+            print(value)
+            return redirect(url_for("views.home"))    
+        else:
+            new_user = User(firstName=firstName, lastName=lastName, email=email, 
+                password=generate_password_hash(password1, method='sha256'), isEmployee=False)
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Account created!', category='success')
+            print(request.form.get('isEmployee'))
+            return redirect(url_for('views.home'))           
+    
     return render_template("sign_up.html")
 
 

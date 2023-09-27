@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from os import path
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -16,4 +17,14 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
+    from .models import User, Ticket, Comment, Status
+        # There is no need for that create_database function. 
+        # SQLAlchemy will already not overwrite an existing file, 
+        # and the only time the database wouldn't be created is if 
+        # it raised an error.
+    
+    with app.app_context():
+        db.create_all()
+
     return app
+

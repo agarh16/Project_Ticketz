@@ -30,14 +30,14 @@ def sing_up():
         elif len(email) < 4:
             #Flash a message
             flash('Email must be greater than 4 characters.', category='error')
-        elif len(password1) < 7:
-            #Flash a message
-            flash('Password must have at least 7 characters.', category='error')
         elif password1 != password2:
             #Flash a message
             flash('Passwords do not match.', category='error')
+        elif len(password1) < 7:
+            #Flash a message
+            flash('Password must have at least 7 characters.', category='error')
         else: 
-            return "HELLO"    
+            flash('Account created!', category='success')    
                 
     return render_template("sign_up.html")
 

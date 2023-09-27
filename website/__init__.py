@@ -1,9 +1,8 @@
-# Python package. Will run automatically
 from flask import Flask
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET KEY'] = 'asdggbdb sdfsfd serf'
+    app.config['SECRET_KEY'] = 'supersecretkey'
 
     from .views import views
     from .auth import auth

@@ -1,5 +1,5 @@
 # Store all the main views or the URL endpoints 
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 
 views = Blueprint('views', __name__)
 

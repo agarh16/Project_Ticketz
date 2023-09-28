@@ -4,7 +4,7 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
-    userId = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     userSince = db.Column(db.DateTime(timezone=True), default=func.now())
     firstName = db.Column(db.String(150))
     lastName = db.Column(db.String(150))
@@ -17,7 +17,7 @@ class Ticket(db.Model):
     ticketId = db.Column(db.Integer, primary_key=True)
     ticketDate = db.Column(db.DateTime(timezone=True), default=func.now())
     ticketName = db.Column(db.String(150))
-    userId = db.Column(db.Integer, db.ForeignKey('user.userId'))
+    userId = db.Column(db.Integer, db.ForeignKey('user.id'))
     comments = db.relationship('Comment')
     allStatus = db.relationship('Status')
 

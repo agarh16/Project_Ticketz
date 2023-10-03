@@ -9,7 +9,11 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
+                {% if user.is_authenticated %}
                 <a class="navbar-brand" href="/">Ticketz</a>
+                {% else %}
+                <a class="navbar-brand" href="/login">Ticketz</a>
+                {% endif %}
                 <div class="container-fluid text-center">
                 {% block content %} {% endblock %} 
                 </div>
@@ -18,10 +22,13 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbar">
                     <div class="navbar-nav">
-                        <a class="nav-link active" id="test" href="/test-database">TestDatabase</a>
-                        <a class="nav-link active" id="login" href="/login">Login</a>
+                        {% if user.is_authenticated %}
                         <a class="nav-link active" id="logout" href="/logout">Logout</a>
+                        <a class="nav-link active" id="test" href="/test-database">TestDatabase</a>
+                        {% else %}
+                        <a class="nav-link active" id="login" href="/login">Login</a>
                         <a class="nav-link active" id="signUp" href="/sign-up">SignUp</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

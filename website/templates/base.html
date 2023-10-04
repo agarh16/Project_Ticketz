@@ -14,9 +14,6 @@
                 {% else %}
                 <a class="navbar-brand" href="/login">Ticketz</a>
                 {% endif %}
-                <div class="container-fluid text-center">
-                {% block content %} {% endblock %} 
-                </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -24,7 +21,7 @@
                     <div class="navbar-nav">
                         {% if user.is_authenticated %}
                         <a class="nav-link active" id="logout" href="/logout">Logout</a>
-                        
+                        <a class="nav-link active" id="test" href="/test-database">TestDatabase</a>
                         {% else %}
                         <a class="nav-link active" id="login" href="/login">Login</a>
                         <a class="nav-link active" id="signUp" href="/sign-up">SignUp</a>
@@ -34,16 +31,26 @@
                 </div>
             </div>
         </nav>
-        <!-- Checking how to filter users by type. Works! -->
-        {% if user.isEmployee == true %}
+        <!-- Checking how to filter users by type. Works!!!! -->
+        {% if user.isEmployee == true and user.is_authenticated %}
+        <nav class="navbar navbar-expand-lg bg-secondary">
+            <div class="container-fluid justify-content-end" id="navbar">
+                <div class="navbar-nav">
+                <a class="nav-link active" id="create_ticket" href="/create-ticket">Create Ticket</a>
+                <a class="nav-link active" id="my_tickets" href="/my-tickets">My Tickets</a>
+                </div>  
+            </div>      
+        </nav>
+        {% else %}
         <nav class="navbar navbar-expand-lg bg-secondary py-4">
             <div class="container-fluid">
+            </div>
         </nav>
         {% endif %}
         <!-- Adding the flash messages  -->
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            {%for category, message in messages %}
+            {% for category, message in messages %}
             {% if category == 'error' %}
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ message }}
@@ -55,6 +62,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             {% endif %} {% endfor %} {% endif %} {% endwith %}
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
         <div class="container">
             {% block body %}
             {% endblock %}

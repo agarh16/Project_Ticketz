@@ -22,6 +22,10 @@ def all_users_table():
         print(printed_results)
     return render_template("test.html")
 
+@views.route('/create-ticket')
+@login_required
+def create_ticket():
+    return render_template("create_ticket.html", user=current_user)
 
 
 

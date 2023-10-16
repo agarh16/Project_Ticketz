@@ -10,7 +10,7 @@ class User(db.Model, UserMixin):
     lastName = db.Column(db.String(150))
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    isEmployee = db.Column(db.Boolean)
+    isEmployee = db.Column(db.Boolean, default=False)
     tickets = db.relationship('Ticket')
 
 class Ticket(db.Model):

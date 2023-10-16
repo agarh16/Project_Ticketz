@@ -56,9 +56,10 @@ def sing_up():
             flash('Email must be greater than 4 characters.', category='error')
         elif password1 != password2:
             flash('Passwords do not match.', category='error')
+        # Create a function for this
         elif len(password1) < 7:
             flash('Password must have at least 7 characters.', category='error')
-        elif isEmployee == '1': 
+        elif isEmployee == "1": 
             new_user = User(firstName=firstName, lastName=lastName, email=email, password=generate_password_hash(password1, method='sha256'), isEmployee=True)
             db.session.add(new_user)
             db.session.commit()
@@ -66,13 +67,13 @@ def sing_up():
             login_user(new_user, remember=True)
             return redirect(url_for("views.home"))    
         else:
-            new_user = User(firstName=firstName, lastName=lastName, email=email, password=generate_password_hash(password1, method='sha256'), isEmployee=False)
-            db.session.add(new_user)
-            db.session.commit()
-            flash('Account created!', category='success')
-            login_user(new_user, remember=True)
+           new_user = User(firstName=firstName, lastName=lastName, email=email, password=generate_password_hash(password1, method='sha256'))
+           db.session.add(new_user)
+           db.session.commit()
+           flash('Account created!', category='success')
+           login_user(new_user, remember=True)
             
-            return redirect(url_for('views.home'))           
+           return redirect(url_for('views.home'))           
     
     return render_template("sign_up.html", user=current_user)
 

@@ -17,10 +17,10 @@ def home():
 @views.route('/test-database')
 def all_users_table():
     results = db.session.query(User).all()
-    for result in results:
-        printed_results = result.firstName, result.lastName, result.email, result.isEmployee
-        print(printed_results)
-    return render_template("test.html")
+    # for result in results:
+    #     printed_results = result.firstName, result.lastName, result.email, result.isEmployee
+    #     print(printed_results)
+    return render_template("test.html", user=current_user, results=results)
 
 @views.route('/create-ticket')
 @login_required

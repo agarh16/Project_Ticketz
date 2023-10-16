@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block title %}Test Database{% endblock %} 
+
+{% block body %}
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Is Employee</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% if results %}
+            
+            {% for result in results %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{result.firstName}}</td>
+                    <td>{{result.lastName}}</td>
+                    <td>{{result.email}}</td>
+                    <td>{{result.isEmployee}}</td>
+                </tr>
+            {% endfor %}
+        {%endif%}
+      
+    </tbody>
+  </table>
+    
+       
+{% endblock %}

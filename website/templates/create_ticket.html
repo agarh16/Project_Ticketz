@@ -1,5 +1,19 @@
 {% extends "base.html" %} {% block title %}Create Ticket{% endblock %} 
 
 {% block body %}
-<br>
+<br />
+<form method="POST">
+    <div class="form-group">
+        <label for="ticketName" class="form-label">Ticket Name</label>
+        <textarea name="ticketName" id="ticketName" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="ticketText" class="form-label">Text</label>
+        <textarea name="ticketText" id="ticketText" class="form-control" rows="3"></textarea>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </div>
+    
+</form>
 {% endblock %}

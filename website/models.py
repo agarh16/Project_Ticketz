@@ -18,8 +18,9 @@ class Ticket(db.Model):
     ticketDate = db.Column(db.DateTime(timezone=True), default=func.now())
     ticketName = db.Column(db.String(150))
     userId = db.Column(db.Integer, db.ForeignKey('user.id'))
+    ticketText = db.Column(db.Text)
     comments = db.relationship('Comment')
-    allStatus = db.relationship('Status')
+    allstatus = db.relationship('Status')
 
 class Comment(db.Model):
     commentId = db.Column(db.Integer, primary_key=True)
